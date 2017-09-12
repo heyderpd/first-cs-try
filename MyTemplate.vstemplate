@@ -1,0 +1,43 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>RadioTJ</Name>
+    <Description>&lt;No description available&gt;</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>RadioTJ</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>__TemplateIcon.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="RadioTJ.csproj" File="RadioTJ.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="AudioControl.cs">AudioControl.cs</ProjectItem>
+      <Folder Name="AudioLib" TargetFolderName="AudioLib">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AudioApiInterface.cs">AudioApiInterface.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="MixerNative.cs">MixerNative.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="ClockManager.cs">ClockManager.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Data.cs">Data.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="DiscWorker.cs">DiscWorker.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Form1.cs">Form1.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Form1.Designer.cs">Form1.Designer.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Form1.resx">Form1.resx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="IniWorker.cs">IniWorker.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="ListItemManager.cs">ListItemManager.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Player.cs">Player.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Program.cs">Program.cs</ProjectItem>
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Resources.resx">Resources.resx</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Resources.Designer.cs">Resources.Designer.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Settings.settings">Settings.settings</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Settings.Designer.cs">Settings.Designer.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="VoiceItem.cs">VoiceItem.cs</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>
