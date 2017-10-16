@@ -81,7 +81,7 @@ namespace RadioTJ
 
 		public struct Volume
 		{
-			public uint ID;
+			public string ID;
 
 			public int Max;
 

@@ -13,7 +13,7 @@ namespace RadioTJ
 		static Player()
 		{
 			Player.snd = new SoundPlayer();
-		}
+        }
 
 		public static DateTime deslokTime(double doubTime)
 		{
@@ -91,7 +91,8 @@ namespace RadioTJ
 
 		public static bool getVolume(ref Data.Volume Audio)
 		{
-			Data.Volume volume = AudioApiInterface.Get(Audio);
+            Console.WriteLine("getVolume");
+            Data.Volume volume = AudioApiInterface.Get(ref Audio);
 			if (volume.Line == null)
 			{
 				Audio.Value = -1;
@@ -166,24 +167,18 @@ namespace RadioTJ
 
 		public static bool setVolume(ref Data.Volume Audio)
 		{
-			Data.Volume audio = Audio;
-			if (audio.Value > audio.Max)
+			if (Audio.Value > Audio.Max)
 			{
-				audio.Value = audio.Max;
+                Audio.Value = Audio.Max;
 			}
-			else if (audio.Value < 0)
+			else if (Audio.Value < 0)
 			{
-				audio.Value = 0;
+                Audio.Value = 0;
 			}
-			audio.Value = (int)((double)audio.Value * audio.Range);
-			audio = AudioApiInterface.Set(audio);
-			if (audio.Line != null)
-			{
-				Audio = audio;
-				return true;
-			}
-			Audio.Value = -1;
-			return false;
+            Audio.Value = (int)((double) Audio.Value * Audio.Range);
+            Console.WriteLine("setVolume");
+            Audio = AudioApiInterface.Set(ref Audio);
+			return true;
 		}
 
 		public static void tryPlay()

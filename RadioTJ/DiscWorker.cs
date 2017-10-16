@@ -21,9 +21,9 @@ namespace RadioTJ
 
 		public static void Initialize()
 		{
-			Data.IN.Range = 0.2;
+			Data.IN.Range = 1;
 			Data.MSG.Range = 1;
-			Data.OUT.Range = 0.8;
+			Data.OUT.Range = 1;
 			Data.IN.Max = 70;
 			Data.MSG.Max = 100;
 			Data.OUT.Max = 80;
@@ -33,10 +33,10 @@ namespace RadioTJ
 			Data.IN.Line = "Rear Blue In";
 			Data.MSG.Line = "Som wave";
 			Data.OUT.Line = "Volume principal";
-			Data.IN.ID = 777;
-			Data.MSG.ID = 777;
-			Data.OUT.ID = 777;
-			Data.TimeElapse = 10;
+			Data.IN.ID = "IN";
+            Data.MSG.ID = "MSG";
+            Data.OUT.ID = "OUT";
+            Data.TimeElapse = 10;
 		}
 
 		public static void LoadDisk()
@@ -57,7 +57,7 @@ namespace RadioTJ
 				ListManager.GeraOrdem();
 				ListManager.setNext();
 			}
-			catch (Exception exception)
+			catch
 			{
 			}
 		}
@@ -121,8 +121,6 @@ namespace RadioTJ
 			}
 			try
 			{
-				DiscWorker.F = new JanelaSelecaoLine();
-				DiscWorker.F.Show();
 				(new Thread(new ThreadStart(DiscWorker.whaitToClose))).Start();
 			}
 			catch

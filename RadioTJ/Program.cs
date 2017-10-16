@@ -8,7 +8,8 @@ namespace RadioTJ
 {
 	internal static class Program
 	{
-		private static Mutex m;
+        private static int PID;
+        private static Mutex m;
 
 		private static bool isRunning()
 		{
@@ -17,14 +18,21 @@ namespace RadioTJ
 			return !flag;
 		}
 
-		[STAThread]
+        public static int getPID()
+        {
+            return Program.PID;
+        }
+
+        [STAThread]
 		private static void Main(string[] arg)
 		{
 			if (Program.isRunning())
 			{
 				return;
 			}
-			Application.EnableVisualStyles();
+
+            Program.PID = Process.GetCurrentProcess().Id;
+            Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Data.Initialize();
 			DiscWorker.Start();
