@@ -1,0 +1,10 @@
+
+*.ide
+
+*.cache
+
+bin/
+
+obj/
+
+\.vs/RadioTJ\.last/v15/\.suo

@@ -218,7 +218,7 @@ namespace VideoPlayerController
             }
             catch (System.Runtime.InteropServices.InvalidComObjectException)
             {
-                Console.WriteLine("COMException");
+                // Console.WriteLine("COMException");
                 return level;
             }
             finally
@@ -357,7 +357,13 @@ namespace VideoPlayerController
         public static float GetVolumeAllCapture()
         {
             // EDataFlow.eCapture
-            return ManipuleVolume(0, EDataFlow.eCapture, false, 0, 0);
+            return ManipuleVolume(-1, EDataFlow.eCapture, false, 0, 0);
+        }
+
+        public static float GetVolumeById(int pid)
+        {
+            // EDataFlow.eCapture
+            return ManipuleVolume(pid, EDataFlow.eRender, false, 0, 0);
         }
 
         public static void SetVolumeAllCapture(float level)
@@ -365,7 +371,7 @@ namespace VideoPlayerController
             // EDataFlow.eCapture
             ManipuleVolume(0, EDataFlow.eCapture, true, level, level);
         }
-        
+
         public static void SetVolumeAndMaxAll(int pid, float level)
         {
             // EDataFlow.eRender
@@ -396,7 +402,7 @@ namespace VideoPlayerController
                 mgr.GetSessionEnumerator(out sessionEnumerator);
                 int count;
                 sessionEnumerator.GetCount(out count);
-                Console.WriteLine("count: " + count);
+                // Console.WriteLine("count: " + count);
 
                 // search for an audio session with the required process-id
                 for (int i = 0; i < count; ++i)
@@ -411,7 +417,7 @@ namespace VideoPlayerController
                         string name;
                         ctl.GetProcessId(out cpid);
                         ctl.GetDisplayName(out name);
-                        Console.WriteLine("cpid: " + cpid + "name: " + name);
+                        // Console.WriteLine("cpid: " + cpid + "name: " + name);
 
                         volumeControl = ctl as ISimpleAudioVolume;
                         if (volumeControl == null)
@@ -421,6 +427,7 @@ namespace VideoPlayerController
 
                         if (setVol)
                         {
+                            volumeControl.SetMute(false, ref guid);
                             if (cpid == pid)
                             {
                                 volumeControl.SetMasterVolume(level / 100, ref guid);
@@ -429,17 +436,29 @@ namespace VideoPlayerController
                             {
                                 volumeControl.SetMasterVolume(all / 100, ref guid);
                             }
-                        } else
-                        {
-                            volumeControl.GetMasterVolume(out level);
-                            return level;
                         }
+                        else
+                        {
+                            if (pid == -1 || cpid == pid)
+                            {
+                                volumeControl.GetMasterVolume(out level);
+                                return level;
+                            }
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        return 0;
                     }
                     finally
                     {
                         if (ctl != null) Marshal.ReleaseComObject(ctl);
                     }
                 }
+                return 0;
+            }
+            catch (Exception e)
+            {
                 return 0;
             }
             finally

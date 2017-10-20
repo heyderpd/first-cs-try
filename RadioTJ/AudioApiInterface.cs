@@ -31,7 +31,7 @@ namespace RadioTJ
                     break;
 
                 case "MSG":
-                    MixLine.Value = (int) (AudioManager.GetApplicationVolume(Program.getPID()) * 100);
+                    MixLine.Value = (int) (AudioManager.GetVolumeById(Program.getPID()) * 100);
                     break;
 
                 case "OUT":
@@ -41,7 +41,7 @@ namespace RadioTJ
                 default:
                     break;
             }
-            Console.WriteLine(MixLine.ID + " Get:" + MixLine.Value);
+            // Console.WriteLine(MixLine.ID + " Get:" + MixLine.Value);
             return MixLine;
         }
 
@@ -64,7 +64,7 @@ namespace RadioTJ
                 default:
                     break;
             }
-            Console.WriteLine(MixLine.ID + " Set:" + MixLine.Value);
+            // Console.WriteLine(MixLine.ID + " Set:" + MixLine.Value);
             return MixLine;
 		}
 	}
