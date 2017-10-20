@@ -91,7 +91,7 @@ namespace RadioTJ
 
 		public static bool getVolume(ref Data.Volume Audio)
 		{
-            Console.WriteLine("getVolume");
+            // Console.WriteLine("getVolume");
             Data.Volume volume = AudioApiInterface.Get(ref Audio);
 			if (volume.Line == null)
 			{
@@ -176,7 +176,7 @@ namespace RadioTJ
                 Audio.Value = 0;
 			}
             Audio.Value = (int)((double) Audio.Value * Audio.Range);
-            Console.WriteLine("setVolume");
+            // Console.WriteLine("setVolume");
             Audio = AudioApiInterface.Set(ref Audio);
 			return true;
 		}

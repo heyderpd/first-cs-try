@@ -27,7 +27,7 @@ namespace RadioTJ
 			if (Oclock.Now.Hour == 6 && Oclock.Now.Minute > 0 && Oclock.Now.Minute < 2)
 			{
 				ClockManager.ShutDown = true;
-				Process.Start("shutdown", "/r /f /t 120 /c \"RadioTJ Reset\"");
+				Process.Start("shutdown", "/r /f /t 180 /c \"RadioTJ: PC ira reiniciar em 3 min\"");
 			}
 			bool flag = false;
 			bool flag1 = false;
@@ -56,7 +56,7 @@ namespace RadioTJ
 			Data.Working = ClockManager.getNow();
 			if (!Data.Working)
 			{
-				Data.TimeElapseShow = "Sleeping";
+				Data.TimeElapseShow = "[DESLIGADO]";
 				ClockManager.modeNew = false;
 				Player.workMode(false);
 			}
@@ -96,7 +96,7 @@ namespace RadioTJ
 			int num = ClockManager.TimeCount / 1000 % 60;
 			str = (num >= 10 ? string.Concat(num) : string.Concat("0", num));
 			str1 = (timeCount >= 10 ? string.Concat(timeCount) : string.Concat("0", timeCount));
-			Data.TimeElapseShow = string.Concat(str1, ":", str);
+			Data.TimeElapseShow = string.Concat("[", str1, ":", str, "]");
 			if (timeCount < Data.TimeElapse)
 			{
 				return false;
